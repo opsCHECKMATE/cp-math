@@ -6,6 +6,7 @@ using namespace std;
 
 // Smallest Prime Factor (SPF)
 vector<int> spf;
+
 void build_spf(int n) {
     for(int i = 0; i < n; ++i) {
         spf[i] = i;
@@ -28,6 +29,7 @@ void build_spf(int n) {
     /*
                 spf = [ 0 1 2 3 4 5 6 7 8 9 ]
                             i
+
                 Note:
                 We start from 2 because 0 and 1 are not prime numbers,
                 and 2 is the smallest prime number. Also, every composite
@@ -67,17 +69,19 @@ inline void done() {
     spf.assign(n, 0);
     // spf = [ 0 0 0 0 0 0 0 0 0 0 ]
     build_spf(n);
+
     /*
-    before: 
+    Before: 
         spf = [ 0 1 2 3 4 5 6 7 8 9 ]
 
-    after: 
+    After: 
         spf = [ 0 1 2 3 2 5 2 7 2 3 ]
     */
+
     for(auto i: spf) {
         cout << i << ' ';
     }
-    // result = [ 0 1 2 3 2 5 2 7 2 3 ]
+    // Result = [ 0 1 2 3 2 5 2 7 2 3 ]
 }
 
 int32_t main() {
