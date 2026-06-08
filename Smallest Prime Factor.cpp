@@ -67,10 +67,6 @@ inline void done() {
     spf.assign(n, 0);
     // spf = [ 0 0 0 0 0 0 0 0 0 0 ]
     build_spf(n);
-
-    for(auto i: spf) {
-        cout << i << ' ';
-    }
     /*
     before: 
         spf = [ 0 1 2 3 4 5 6 7 8 9 ]
@@ -78,6 +74,10 @@ inline void done() {
     after: 
         spf = [ 0 1 2 3 2 5 2 7 2 3 ]
     */
+    for(auto i: spf) {
+        cout << i << ' ';
+    }
+    // result = [ 0 1 2 3 2 5 2 7 2 3 ]
 }
 
 int32_t main() {
