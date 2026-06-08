@@ -65,6 +65,7 @@ inline void done() {
     int n;  cin >> n;
 
     spf.assign(n, 0);
+    // spf = [ 0 0 0 0 0 0 0 0 0 0 ]
     build_spf(n);
 
     for(auto i: spf) {
