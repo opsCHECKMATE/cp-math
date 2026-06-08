@@ -3,7 +3,7 @@ using namespace std;
 
 vector<int> spf;
 
-void build_spf(int n) {
+inline void build_spf(int n) {
     spf.assign(n + 1, 0);
 
     for (int i = 0; i <= n; i++)
