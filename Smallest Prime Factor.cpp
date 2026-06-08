@@ -21,11 +21,16 @@ void build_spf(int n) {
 }
 
 inline void done() {
-    
+    int n;  
+    scanf("%d", &n);
+    build_spf(n);
+    for(auto i : spf) {
+        printf("%d ", i);
+    }
 }
 
 int32_t main() {
-    cin.tie(0)->sync_with_stdio(0);
+    // cin.tie(0)->sync_with_stdio(0);
 
     done();
     return 0;
