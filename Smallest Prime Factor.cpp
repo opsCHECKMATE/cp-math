@@ -25,19 +25,15 @@ int32_t main() {
     sieve();
 
     // Check if number is prime
-    auto chk = [&](int n) {
-        return n == spf[n];
+    auto is_prime = [&](int n) {
+        return n == spf[n] && n > 1;
     };
 
     /*
     Check if number is semi-prime
-    Note: A semi-prime is the product of two prime numbers (they may be equal)
-
-    For example:
-    25 = 5 * 5
-    77 = 7 * 11
+    A semi-prime is the product of two prime numbers (they may be equal)
     */
-    auto semi = [&](int n) {
+    auto semi_prime = [&](int n) {
         int x = spf[n];
         int y = n / x;
         return (spf[x] == x && x > 1 && spf[y] == y && y > 1);
@@ -45,7 +41,7 @@ int32_t main() {
     };
 
     // Finding the prime factorization of a number
-    auto fac = [&](int n) {
+    auto factorization = [&](int n) {
         vector<int> r;
         int x = n;
         while (x != 1) {
@@ -53,6 +49,53 @@ int32_t main() {
             x /= spf[x];
         }
         return r;
+    };
+
+    // Divisors count
+    auto count_divisors = [&](int x) {
+        int ans = 1;
+        while (x > 1) {
+            int p = spf[x];
+            int cnt = 0;
+            while (x % p == 0) {
+                x /= p;
+                cnt++;
+            }
+            ans *= (cnt + 1);
+        }
+        return ans;
+    };
+
+    // Check if number is square-free
+    auto square_free = [&](int x) {
+        while (x > 1) {
+            int p = spf[x];
+            x /= p;
+            if (x % p == 0) return false;
+        }
+        return true;
+    };
+
+    // Generate all divisors
+    auto get_divisors = [&](int x) {
+        vector<int> divs = {1};
+        while (x > 1) {
+            int p = spf[x];
+            int cnt = 0;
+            while (x % p == 0) {
+                x /= p;
+                cnt++;
+            }
+            int sz = divs.size();
+            int mul = 1;
+            for (int i = 0; i < cnt; i++) {
+                mul *= p;
+                for (int j = 0; j < sz; j++) {
+                    divs.push_back(divs[j] * mul);
+                }
+            }
+        }
+        return divs;
     };
 
     return 0;
